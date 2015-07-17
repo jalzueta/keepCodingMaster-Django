@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for wordplease project.
 
@@ -124,3 +125,6 @@ LOGGING = {
 
 # NO_IMAGE
 NO_IMAGE = u'http://www.libreriaraimundo.com/frontend/images/no-photo.jpg'
+
+# BADWORDS
+BADWORDS = [u'puta', u'mierda', u'cabrón', u'cabron', u'ostia', u'copón', u'copon']

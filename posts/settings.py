@@ -18,3 +18,5 @@ STATUS_FOR_NEW_POST = getattr(settings, 'STATUS_FOR_NEW_POST', BORRADOR)
 # Hago el campo NO_IMAGE parametrizable a nivel de App
 DEFAULT_NO_IMAGE = u'http://www.libreriaraimundo.com/frontend/images/no-photo.jpg'
 NO_IMAGE = getattr(settings, 'NO_IMAGE', DEFAULT_NO_IMAGE)
+
+BADWORDS = getattr(settings, 'BADWORDS', [])
