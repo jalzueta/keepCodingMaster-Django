@@ -122,5 +122,5 @@ LOGGING = {
     }
 }
 
-# DEFAULT_IMAGE
-DEFAULT_IMAGE = u'http://www.libreriaraimundo.com/frontend/images/no-photo.jpg'
+# NO_IMAGE
+NO_IMAGE = u'http://www.libreriaraimundo.com/frontend/images/no-photo.jpg'
