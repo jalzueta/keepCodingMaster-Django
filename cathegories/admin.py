@@ -6,7 +6,7 @@ class CathegoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
-    # Tuneamos el editor de fotos del administrador
+    # Tuneamos el editor de posts del administrador
     fieldsets = (
         ('Name', {
             'fields': ('name',),
@@ -14,4 +14,4 @@ class CathegoryAdmin(admin.ModelAdmin):
         }),
     )
 
-admin.site.register(Cathegory)
+admin.site.register(Cathegory, CathegoryAdmin)
