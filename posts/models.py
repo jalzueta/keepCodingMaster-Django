@@ -22,7 +22,10 @@ class Post(models.Model):
     url = models.URLField(blank=True, null=True, default=DEFAULT_IMAGE)
     publication_data = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=3, choices=STATUS, default=BORRADOR)
-    cathegories = models.ForeignKey(Cathegory)
+    cathegories = models.ManyToManyField(Cathegory)
+
+    def __unicode__(self): #0 param method
+        return self.title
 
 
 

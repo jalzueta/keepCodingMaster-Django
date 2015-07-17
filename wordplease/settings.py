@@ -104,6 +104,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Logs all SQL queries in debug
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    }
+}
 
 # DEFAULT_IMAGE
 DEFAULT_IMAGE = u'http://www.libreriaraimundo.com/frontend/images/no-photo.jpg'
