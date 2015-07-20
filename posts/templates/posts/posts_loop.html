@@ -1,0 +1,6 @@
+{% for post in posts_list %}
+    <a href="">
+        <span>{{ post.title }}</span>
+        <img class="img-rounded" src="{{ post.url }}" alt="{{ post.title }}" height="150">
+    </a>
+{% endfor %}
