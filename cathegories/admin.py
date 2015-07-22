@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from cathegories.models import Cathegory
 from django.contrib import admin
 
