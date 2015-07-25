@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.views.generic import View
 from posts.settings import PUBLICADO
 from posts.models import Post
-from blogs.models import Blog
 from posts.forms import PostForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from posts.validators import badwords_detector
-from wordplease.settings import DEFAULT_BLOG_NAME
 
 class LoginForm(forms.Form):
 
