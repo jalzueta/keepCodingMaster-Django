@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout as wordplease_logout, authenticate, login as wordplease_login #importo con un alias, para que no haya conflicto de nombres con mi funcion 'logout'
+from django.contrib.auth import logout as wordplease_logout, authenticate, login as wordplease_login
 from users.forms import LoginForm, SignupForm
 from django.views.generic import View
 from django.contrib.auth.models import User
 from blogs.models import Blog
-from django.core.urlresolvers import reverse
 
 class LoginView(View):
 
@@ -91,3 +90,10 @@ class SignupView(View):
             'signup_form': form
         }
         return render(request, 'users/signup.html', context)
+
+class UserUtils:
+
+    @staticmethod
+    def getUserBlog(pk):
+        blogs = Blog.objects.filter(author__username__exact=pk)
+        return blogs[0]

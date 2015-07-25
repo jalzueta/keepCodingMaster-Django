@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.contrib.auth.models import User
-from blogs.models import Blog
-from django.db.models import Q
 from django.views.generic import ListView
 from posts.settings import PUBLICADO
 from posts.models import Post
 from blogs.models import Blog
+from users.views import UserUtils
 
 class PostsQuerySet(object):
 
@@ -41,8 +39,7 @@ class DetailBlogView(ListView, PostsQuerySet):
         :param pk: username
         :return: HttpResponse
          """
-        blogs = Blog.objects.filter(author__username__exact=pk)
-        blog = blogs[0]
+        blog = UserUtils.getUserBlog(pk)
         posts = self.get_posts_queryset(request).filter(blog__name=blog.name).order_by('-publication_date')
         context = {
             'posts_list': posts,

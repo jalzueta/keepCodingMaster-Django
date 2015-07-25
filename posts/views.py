@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from wordplease.settings import NO_IMAGE
+from users.views import UserUtils
 
 
 class PostsQuerySet(object):
@@ -48,8 +49,7 @@ class DetailPostView(View, PostsQuerySet):
         :param pk: username, idPost: id del post
         :return: HttpResponse
          """
-        blogs = Blog.objects.filter(author__username__exact=pk)
-        blog = blogs[0]
+        blog = UserUtils.getUserBlog(pk)
         possible_posts = self.get_posts_queryset(request).filter(blog__name=blog.name, pk=idPost).order_by('-publication_date')
         post = possible_posts[0] if len(possible_posts) >= 1 else None
         if post is not None:
@@ -94,8 +94,7 @@ class CreatePostView(View):
         :return: HttpResponse
         """
         success_message = ''
-        blogs = Blog.objects.filter(author=request.user)
-        blog = blogs[0]
+        blog = UserUtils.getUserBlog(request.user.username)
         post_with_blog = Post()
         post_with_blog.blog = blog
         form = PostForm(request.POST, instance=post_with_blog) # Coge los datos del formulario sobreescribe los campos que tiene el objeto 'photo_with_owner'
