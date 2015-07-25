@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from cathegories.models import Cathegory
 from posts.settings import NO_IMAGE, POST_STATUS, STATUS_FOR_NEW_POST
 from posts.validators import badwords_detector
+from blogs.models import Blog
 
 class Post(models.Model):
 
@@ -15,13 +16,14 @@ class Post(models.Model):
     publication_data = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=3, choices=POST_STATUS, default=STATUS_FOR_NEW_POST)
     cathegories = models.ManyToManyField(Cathegory, blank=True)
+    blog = models.ForeignKey(Blog)
 
     def save(self, *args, **kwargs):
         if self.resume == "":
             self.resume = self.body[:200]
         return super(Post, self).save(*args, **kwargs)
 
-    def __unicode__(self): #0 param method
+    def __unicode__(self):
         return self.title
 
 
