@@ -4,6 +4,7 @@ from django.contrib.auth import logout as wordplease_logout, authenticate, login
 from users.forms import LoginForm, SignupForm
 from django.views.generic import View
 from django.contrib.auth.models import User
+from blogs.models import Blog
 from django.core.urlresolvers import reverse
 
 class LoginView(View):
@@ -67,6 +68,7 @@ class SignupView(View):
             username = form.cleaned_data.get('usr')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('pwd')
+            blog_name = form.cleaned_data.get('blog_name')
             users = User.objects.filter(username=username)
             if len(users) == 0:
                 new_user = User()
@@ -76,6 +78,10 @@ class SignupView(View):
                 new_user.email = email
                 new_user.set_password(password)
                 new_user.save()
+                blog = Blog()
+                blog.name = blog_name
+                blog.author = new_user
+                blog.save()
                 return redirect('posts_home')
             else:
                 error_messages.append('El username {0} ya existe. Pruebe con otro'.format(username))

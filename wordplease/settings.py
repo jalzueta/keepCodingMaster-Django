@@ -133,3 +133,6 @@ NO_IMAGE = u'http://www.libreriaraimundo.com/frontend/images/no-photo.jpg'
 
 # BADWORDS
 BADWORDS = [u'puta', u'mierda', u'cabrón', u'cabron', u'ostia', u'copón', u'copon']
+
+# DEFAULT_BLOG_NAME
+DEFAULT_BLOG_NAME = u''

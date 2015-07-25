@@ -4,9 +4,9 @@ from posts.models import Post
 
 class PostForm(forms.ModelForm):
     """
-    Formulario para el modelo Photo
+    Formulario para el modelo Post
     """
     class Meta:
         model = Post
-        exclude = ['author'] #campos de Post excluidos para el formulario
+        exclude = ['blog'] #campos de Post excluidos para el formulario
 

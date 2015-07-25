@@ -1,0 +1,5 @@
+{% for blog in blogs_list %}
+    <a href="">
+        <p>{{ blog.name }} ({{ blog.author.first_name }} {{ blog.author.last_name }})</p>
+    </a>
+{% endfor %}
