@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block section %}
+    <h3>{{ post.title }}</h3>
+    <h5>{{ post.resume }}</h5>
+    {% if post.url != url_no_image %}
+        <img class="img-rounded" src="{{ post.url }}" alt="{{ post.title }}" height="450">
+    {% endif %}
+    <p>{{ post.body }}</p>
+    <h6>Categorías:
+        {% for cathegory in post.cathegories.all %}
+            <span>{{ cathegory.name }}{% if not forloop.last %}, {% endif %}</span>
+        {% endfor %}
+    </h6>
+    <h6>Fecha de creación: {{ post.publication_data }}</h6>
+{% endblock %}

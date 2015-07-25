@@ -1,9 +1,11 @@
 {% for post in posts_list %}
-    <a href="">
+    <a href="{% url 'post_detail' post.author.username post.pk %}">
         <span>
-            <p>{{ post.title }}</p>
+            <h3>{{ post.title }}</h3>
             <img class="img-rounded" src="{{ post.url }}" alt="{{ post.title }}" height="150">
-            <p>{{ post.author.first_name }} {{ post.author.last_name }} ({{ post.author.username }})</p>
+            <p>{{ post.resume }}</p>
+            <!--<p>{{ post.author.first_name }} {{ post.author.last_name }} ({{ post.author.username }})</p>-->
         </span>
     </a>
+    <hr>
 {% endfor %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block section %}
+    <h2>Blog de {{ user }} ({{ pk }})</h2>
+
+    {% if posts_list|length > 0 %}
+        <h3>Últimos posts publicados</h3>
+        {% include 'posts/posts_loop.html' %}
+    {% else %}
+        ¡Sé el primero en publicar un post!
+    {% endif %}
+
+{% endblock %}

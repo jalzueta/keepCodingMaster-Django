@@ -124,6 +124,9 @@ LOGGING = {
     }
 }
 
+# LOGIN URL
+LOGIN_URL = '/login'
+
 # NO_IMAGE
 NO_IMAGE = u'http://www.libreriaraimundo.com/frontend/images/no-photo.jpg'
 

@@ -18,7 +18,7 @@ class PostAdmin(admin.ModelAdmin):
     # Tuneamos el editor de posts del administrador
     fieldsets = (
         (None, {
-            'fields': ('title',),
+            'fields': ('title', 'author', 'status'),
             'classes': ('wide',)
         }),
         ('Resume & Body', {
@@ -26,7 +26,7 @@ class PostAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
         ('Extra info', {
-            'fields': ('url', 'status', 'cathegories'),
+            'fields': ('url', 'cathegories'),
             'classes': ('wide', 'collapse') # 'collapse', hace la seccion plegable/desplegable
         })
     )
