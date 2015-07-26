@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'cathegories',
     'blogs',
     'posts',
-    'users'
+    'users',
+    'rest_framework'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -136,3 +137,10 @@ BADWORDS = [u'puta', u'mierda', u'cabrón', u'cabron', u'ostia', u'copón', u'co
 
 # DEFAULT_BLOG_NAME
 DEFAULT_BLOG_NAME = u''
+
+# REST_FRAMEWORK: variable que exporta la App 'rest_framework' para que podamos configurarla
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 5, # items/pagina por defecto
+    'PAGINATE_BY_PARAM': 'page_size', # items/pagina en la solicitud al API
+    'MAX_PAGINATE_BY': 10 # maximo número de elementos
+}

@@ -15,7 +15,7 @@ class Post(models.Model):
     url = models.URLField(blank=True, null=True, default=NO_IMAGE)
     publication_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=3, choices=POST_STATUS, default=STATUS_FOR_NEW_POST)
-    cathegories = models.ManyToManyField(Cathegory, blank=True)
+    cathegories = models.ManyToManyField(Cathegory, blank=True, null=True)
     blog = models.ForeignKey(Blog)
 
     def save(self, *args, **kwargs):
