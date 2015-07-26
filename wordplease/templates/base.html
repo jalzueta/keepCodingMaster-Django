@@ -9,6 +9,7 @@
     <link href="{% static 'css/1-col-portfolio.css' %}" rel="stylesheet"> <!--urls dinámica en función de la url static del settings-->
 </head>
 <body>
+    <h3 class="panel-heading text-center" style="margin-top: 0px; padding-top:0px">Wordplease <small>(Una "mejora" de Wordpress)</small></h3>
     <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
             <a class="navbar-brand" href="{% url 'posts_home' %}">Wordplease</a>
@@ -26,14 +27,13 @@
         </ul>
     </nav>
     <div class="panel panel-default">
-        <h3 class="panel-heading">Wordplease - Una mejora de Wordpress</h3>
         <div class="panel-body">
             <section>
                 {% block section %} {% endblock %}
             </section>
         </div>
     </div>
-    <footer>
+    <footer class="text-center">
         <small>Wordplease Inc &copy; Todos los derechos reservados</small>
     </footer>
 </body>

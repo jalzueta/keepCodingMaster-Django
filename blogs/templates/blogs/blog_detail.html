@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block section %}
-    <h2>{{ blog }}</h2>
+    <h3 class="form-signin-heading text-center">{{ blog }}</h3>
     <h5>Autor: {{ blog.author.first_name }} {{ blog.author.last_name }}</h5>
 
     {% if posts_list|length > 0 %}

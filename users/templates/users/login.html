@@ -7,14 +7,31 @@
 {% for error in errors %}
     <p>{{ error }}</p>
 {% endfor %}
-<form method="post">
+<!--<form method="post">
     {% csrf_token %}
-    <!--Refactorizado de formulario-->
+    &lt;!&ndash;Refactorizado de formulario&ndash;&gt;
     <table>
     {{ login_form.as_table }}
     </table>
     <div>
         <button>Entrar</button>
     </div>
-</form>
+</form>-->
+<div class="container text-center">
+    <form method="post" class="form-signin">
+        <div class="row-fluid">
+            {% csrf_token %}
+            <div class="col-md-12 well">
+                <h4 class="form-signin-heading">Login de usuarios</h4>
+                <table class="table table-bordered">
+                    {{ login_form.as_table }}
+                </table>
+                <button class="btn btn-success" type="submit">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Login
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

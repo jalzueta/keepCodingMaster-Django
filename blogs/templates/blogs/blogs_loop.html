@@ -1,7 +1,6 @@
 {% for blog in blogs_list %}
-    <li class="list-group-item">
-        <a href="{% url 'blog_detail' blog.author.username %}">
-            <p>{{ blog.name }} ({{ blog.author.first_name }} {{ blog.author.last_name }})</p>
-        </a>
-    </li>
+    <a href="{% url 'blog_detail' blog.author.username %}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{ blog.name }}</h4>
+        <p class="list-group-item-text">{{ blog.author.first_name }} {{ blog.author.last_name }}.</p>
+    </a>
 {% endfor %}

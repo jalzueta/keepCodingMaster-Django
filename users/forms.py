@@ -4,8 +4,8 @@ from posts.validators import badwords_detector
 
 class LoginForm(forms.Form):
 
-    usr = forms.CharField(label="Nombre de usuario")
-    pwd = forms.CharField(label="Contraseña", widget=forms.PasswordInput) #Campo con texto oculto
+    usr = forms.CharField(label="Nombre de usuario", widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+    pwd = forms.CharField(label="Contraseña", widget=forms.PasswordInput(attrs={'class' : 'myfieldclass'})) #Campo con texto oculto
 
 
 class SignupForm(forms.Form):
