@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^new-post$', CreatePostView.as_view(), name='create_post'),
 
     # Posts API URLs
-    # Listado de posts para la home
+    # Listado de posts para la home/Creacion de un post nuevo
     url(r'api/1.0/posts/$', PostListAPI.as_view(), name='post_list_api'),
 
     #Blogs URLs
@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'api/1.0/blogs/$', BlogsListAPI.as_view(), name='blog_list_api'),
     # Detalle de un blog: listado de posts del blog
     url(r'api/1.0/blogs/(?P<pk>[-\w]+)/$', BlogDetailAPI.as_view(), name='blog_detail_api'),
-    # Detalle de un post
+    # Detalle/Actualizacion/Borrado de un post
     url(r'api/1.0/blogs/(?P<pk>[-\w]+)/(?P<idPost>[0-9]+)/$', PostDetailAPI.as_view(), name='blog_detail_api'),
 
     #Users URLs
@@ -54,6 +54,8 @@ urlpatterns = [
     url(r'^signup', SignupView.as_view(), name='users_signup'),
 
     # Users API URLs
+    #Listar usuarios/Crear un nuevo usuario
     url(r'api/1.0/users/$', UserListAPI.as_view(), name='user_list_api'),
+    # Detalle/Actualizacion/Borrado de un usuario
     url(r'api/1.0/users/(?P<pk>[0-9]+)$', UserDetailAPI.as_view(), name='user_detail_api')
 ]

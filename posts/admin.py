@@ -13,7 +13,7 @@ class PostAdmin(admin.ModelAdmin):
 
     # definimos atributos a la funcion 'author_name'
     author_name.short_description = 'Post author' # nombre de la columna en el admin
-    author_name.admin_order_field = 'blog.author' # le decimos que esa columna se ordene por el campo 'author' del modelo
+    author_name.admin_order_field = 'blog__author' # le decimos que esa columna se ordene por el campo 'blog' del modelo
 
     # Tuneamos el editor de posts del administrador
     fieldsets = (
