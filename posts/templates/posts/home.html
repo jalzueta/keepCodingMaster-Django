@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 
 {% block section %}
-    <h1>Bienvenido a Wordplease</h1>
-    <p>Wordplease es como Wordpress, pero mejor</p>
-
     {% if posts_list|length > 0 %}
-        <h2>Últimos posts publicados</h2>
+        <h3>Últimos posts publicados</h3>
         {% include 'posts/posts_loop.html' %}
     {% else %}
         ¡Sé el primero en publicar un post!
