@@ -111,3 +111,67 @@ class CreatePostView(View):
             'success_message': success_message
         }
         return self.render(request, context)
+
+
+class UpdatePostView(View, PostsQuerySet):
+
+    def render(self, request, context):
+        return render(request, 'posts/update_post.html', context)
+
+    # Se decora al decorador para que funcione con vistas basadas en clases.
+    # @login_required() solo funciona para vistas basadas en funciones
+    @method_decorator(login_required()) # Decorador que se encarga de comprobar si el usuario está autenticado. La redireccion en caso de no estar autenticado, al 'LOGIN_URL' de settings
+    def get(self, request, pk, idPost):
+        """
+        Muestra un formulario para crear un post
+        :param request: HttpRequest
+        :return: HttpResponse
+        """
+        blog = UserUtils.getUserBlog(pk)
+        possible_posts = self.get_posts_queryset(request).filter(blog__name=blog.name, pk=idPost).order_by('-publication_date')
+        post = possible_posts[0] if len(possible_posts) >= 1 else None
+        if post is not None:
+            form = PostForm(instance=post)
+        else:
+            form = PostForm()
+
+        context = {
+            'form': form,
+            'success_message': ''
+        }
+        return self.render(request, context)
+
+    # Se decora al decorador para que funcione con vistas basadas en clases.
+    # @login_required() solo funciona para vistas basadas en funciones
+    @method_decorator(login_required()) # Decorador que se encarga de comprobar si el usuario está autenticado. La redireccion en caso de no estar autenticado, al 'LOGIN_URL' de settings
+    def post(self, request, pk, idPost):
+        """
+        Actualiza un post en base a la información POST
+        :param request: HttpRequest
+        :return: HttpResponse
+        """
+        success_message = ''
+        blog = UserUtils.getUserBlog(request.user.username)
+        post_with_blog = Post()
+        post_with_blog.blog = blog
+        form = PostForm(request.POST, instance=post_with_blog) # Coge los datos del formulario sobreescribe los campos que tiene el objeto 'photo_with_owner'
+        if form.is_valid():
+            new_post = form.save() # Guarda el objeto en BB.DD. y me lo devuelve
+            form = PostForm() # Forzamos a que el formulario se vacie si la creacion de la foto ha sido satisfactoria
+            success_message = 'Guardado con éxito!'
+            success_message += '<a href = "{0}">'.format(
+                reverse('post_detail', args=[new_post.blog.author.username,new_post.pk])
+            )
+            success_message += 'Ver post'
+            success_message += '</a>'
+
+            blog = UserUtils.getUserBlog(pk)
+            possible_posts = self.get_posts_queryset(request).filter(blog__name=blog.name, pk=idPost).order_by('-publication_date')
+            post_to_delete = possible_posts[0] if len(possible_posts) >= 1 else None
+            if post_to_delete is not None:
+                post_to_delete.delete()
+        context = {
+            'form': form,
+            'success_message': success_message
+        }
+        return self.render(request, context)

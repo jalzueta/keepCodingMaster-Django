@@ -6,7 +6,15 @@
               <img class="img-rounded img-responsive" src="{{ post.url }}" alt="{{ post.title }}" width="300">
           </div>
           <div class="col-md-7">
-              <h3>{{ post.title }}</h3>
+              <h3>{{ post.title }}
+                  {% if post.status = "BOR" %}
+                  <span style="color:#ff0000;font-size:16px"> (Borrador) </span>
+                  {% elif post.status = "PUB" %}
+                  <span style="color:#00A900;font-size:16px"> (Publicado) </span>
+                  {% else %}
+                  <span style="color:#0000ff;font-size:16px"> (Terminado) </span>
+                  {% endif %}
+              </h3>
               <p><small>{{ post.resume }}</small></p>
               <a class="btn btn-success" href="{% url 'post_detail' post.blog.author.username post.pk %}">
                   Ver post
