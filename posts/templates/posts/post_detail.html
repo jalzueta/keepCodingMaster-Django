@@ -1,16 +1,28 @@
 {% extends 'base.html' %}
 
 {% block section %}
-    <h3>{{ post.title }}</h3>
-    <h5>{{ post.resume }}</h5>
+    <h3>{{ post.title }}
+    {% if post.status = "BOR" %}
+        <span style="color:#ff0000;font-size:16px"> (Borrador) </span>
+        {% elif post.status = "PUB" %}
+        <span style="color:#00A900;font-size:16px"> (Publicado) </span>
+        {% else %}
+        <span style="color:#0000ff;font-size:16px"> (Terminado) </span>
+        {% endif %}
+    </h3>
+    <h5 style="color:#666666;">{{ post.resume }}</h5>
     {% if post.url != url_no_image %}
         <img class="img-rounded" src="{{ post.url }}" alt="{{ post.title }}" height="450">
     {% endif %}
-    <p>{{ post.body }}</p>
-    <h6>Categorías:
+    <p style="color:#666666;">{{ post.body }}</p>
+    <h6 style="color:#666666;"><span style="color:#999999;">Categorías:</span>
         {% for cathegory in post.cathegories.all %}
             <span>{{ cathegory.name }}{% if not forloop.last %}, {% endif %}</span>
         {% endfor %}
     </h6>
-    <h6>Fecha de creación: {{ post.publication_data }}</h6>
+    <h6 style="color:#666666;"><span style="color:#aaaaaa;">Fecha de creación:</span> {{ post.publication_date }}</h6>
+    <a class="btn btn-success" href="{% url 'update_post' post.blog.author.username post.pk %}">
+        Editar post
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
 {% endblock %}

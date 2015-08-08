@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from posts.views import HomeView, DetailPostView, CreatePostView
+from posts.views import HomeView, DetailPostView, CreatePostView, UpdatePostView
 from blogs.views import BlogsView, DetailBlogView
 from users.views import LoginView, LogoutView, SignupView
 from users.api import UserListAPI, UserDetailAPI
@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='posts_home'),
     url(r'^blogs/(?P<pk>[-\w]+)/(?P<idPost>[0-9]+)/$', DetailPostView.as_view(), name='post_detail'),
     url(r'^new-post$', CreatePostView.as_view(), name='create_post'),
+    url(r'^update-post/(?P<pk>[-\w]+)/(?P<idPost>[0-9]+)/$', UpdatePostView.as_view(), name='update_post'),
 
     # Posts API URLs
     # Listado de posts para la home/Creacion de un post nuevo

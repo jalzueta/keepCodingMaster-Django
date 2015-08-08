@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Crear un post {% endblock %}
+
+{% block section %}
+
+    <!--|safe: para que no me escape el html que llega en success_message-->
+    {% if success_message %}<span style="color:green">{{ success_message|safe }}</span>{% endif %}
+
+    <!--<form method="post" novalidate> &lt;!&ndash;'novalidate' impide a los navegadores hacer validaciones de los campos&ndash;&gt;
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button>Crear post</button>
+        </div>
+    </form>-->
+    <h3 class="form-signin-heading text-center">Actualiza tu post</h3>
+    <div class="container text-center">
+        <form method="post" class="form-signin">
+            <div class="row-fluid">
+                {% csrf_token %}
+                <div class="col-md-12 well">
+                    <table class="table table-bordered">
+                        {{ form.as_table }}
+                    </table>
+                    <button class="btn btn-success" type="submit">Actualizar post</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
